@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-""" Script for to_str function """
+""" Script for annotate variables """
 
 
-def to_Str(n: float) -> str:
-    """to_str function implementation"""
-    return str(n)
+a: int = 1
+pi: float = 3.14
+i_understand_annotations: bool = True
+school: str = "Holberton"
