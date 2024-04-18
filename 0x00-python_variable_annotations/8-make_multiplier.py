@@ -6,12 +6,9 @@ from typing import Callable
 
 def make_multiplier(multiplier: float) -> Callable[[float], float]:
     """Type-annotated implementation for make_multiplier"""
-    
+
     def multiply(floaty: float) -> float:
-        """
-        Type-annotated function that takes a float multiplier returns
-        multiplier * multiplier
-        """
+        """Type-annotated function multiply"""
         return float(floaty * multiplier)
 
     return multiply
