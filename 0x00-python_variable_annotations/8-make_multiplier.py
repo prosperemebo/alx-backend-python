@@ -4,7 +4,7 @@
 from typing import Callable
 
 
-def make_multiplier(multiplier: float, v: Union[int, float]) -> Callable[[float], float]:
+def make_multiplier(multiplier: float) -> Callable[[float], float]:
     """Type-annotated implementation for make_multiplier"""
     
     def multiply(floaty: float) -> float:
