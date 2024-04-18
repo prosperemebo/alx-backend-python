@@ -4,6 +4,6 @@
 from math import floor as f
 
 
-def floor(n: float) -> float:
+def floor(n: float) -> int:
     """Floor function implementation"""
     return f(n)
