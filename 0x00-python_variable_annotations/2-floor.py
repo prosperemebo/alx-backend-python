@@ -6,4 +6,4 @@ from math import floor as f
 
 def floor(n: float) -> float:
     """Floor function implementation"""
-    return math.floor(n)
+    return f(n)
