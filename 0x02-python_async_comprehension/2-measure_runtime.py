@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
-""" script for async_generator """
+""" script for measure_runtime """
 import asyncio
 import random
-from typing import AsyncGenerator
+from typing import Generator
 
 
-async def async_generator() -> AsyncGenerator[float, None]:
+async def measure_runtime() -> Generator[float, None, None]:
     """
     The coroutine will loop 10 times,
     each time asynchronously wait 1 second.
     """
-    for _ in range(10):
+    for i in range(10):
         await asyncio.sleep(1)
         yield random.uniform(0, 10)
