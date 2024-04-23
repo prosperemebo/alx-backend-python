@@ -1,15 +1,20 @@
 #!/usr/bin/env python3
 """ script for measure_runtime """
+import time
 import asyncio
-import random
 from typing import Generator
+
+async_comprehension = __import__('1-async_comprehension').async_comprehension
 
 
 async def measure_runtime() -> Generator[float, None, None]:
     """
-    The coroutine will loop 10 times,
-    each time asynchronously wait 1 second.
+    The coroutine that will execute,
+    four times in parallel using asyncio.gather.
+    measure_runtime should measure the total runtime and return it.
     """
-    for i in range(10):
-        await asyncio.sleep(1)
-        yield random.uniform(0, 10)
+    start_time = time.perf_counter()
+    tasks = [async_comprehension() for _ in range(4)]
+    await asyncio.gather(tasks)
+    elapsed_time = time.perf_counter() - start_time
+    return elapsed_time
