@@ -3,8 +3,9 @@
 
 from typing import Mapping, Sequence, Any, Dict
 from utils import access_nested_map, get_json
-from unittest import TestCase, Mock, patch
+from unittest.mock import patch, Mock
 from parameterized import parameterized
+from unittest import TestCase
 
 
 class TestAccessNestedMap(TestCase):
@@ -55,7 +56,9 @@ class TestGetJson(TestCase):
         """Test the get_json function by mocking the requests.get method."""
         mocked_response = Mock()
         mocked_response.json.return_value = test_payload
+
         with patch("requests.get", return_value=mocked_response) as mocked_get:
             output = get_json(url)
+
         mocked_get.assert_called_once_with(url)
         self.assertEqual(output, test_payload)
