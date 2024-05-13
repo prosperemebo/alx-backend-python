@@ -2,7 +2,7 @@
 """ this module contains TestAccessNestedMap implementations """
 
 from typing import Mapping, Sequence, Any, Dict
-from utils import access_nested_map, get_json
+from utils import access_nested_map, get_json, memoize
 from unittest.mock import patch, Mock
 from parameterized import parameterized
 from unittest import TestCase
@@ -62,3 +62,36 @@ class TestGetJson(TestCase):
 
         mocked_get.assert_called_once_with(url)
         self.assertEqual(output, test_payload)
+
+
+class TestMemoize(TestCase):
+    """Implementation of TestMemoize class"""
+
+    def test_memoize(self):
+        """Test the memoize decorator on a property by mocking a_method."""
+
+        class TestClass:
+            """Dummy class for testing."""
+
+            def a_method(self) -> int:
+                """Mocked method for testing purposes."""
+                return 42
+
+            @memoize
+            def a_property(self) -> int:
+                """Property under test using the memoize decorator."""
+                return self.a_method()
+
+        with patch.object(TestClass, "a_method") as mocked_method:
+            mocked_method.return_value = 42
+            dummy = TestClass()
+            res1 = dummy.a_property
+            res2 = dummy.a_property
+
+        dummy = TestClass()
+        res1 = dummy.a_property
+        res2 = dummy.a_property
+
+        mocked_method.assert_called_once()
+        self.assertEqual(res1, 42)
+        self.assertEqual(res2, 42)
